@@ -1,6 +1,9 @@
 package com.example.workshhop2;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +24,7 @@ public class MyApplicationRunner implements CommandLineRunner {
             logger.error("you can't divise with 0");
         }
         logger.info("Application finished");
-
+        this.copyLogFile();
     }
 
     public double calculator(int x, int y) {
@@ -33,13 +36,21 @@ public class MyApplicationRunner implements CommandLineRunner {
         try {
             File sourceFile = new File("logs/mylog.log");
             File destinationFile = new File("logs/old/mylog.log");
-            if (sourceFile.exists()){
+            if (!sourceFile.exists()){
                 sourceFile.getParentFile().mkdirs();
+                sourceFile.createNewFile();
+                logger.info("new log file created");
             }
-            destinationFile.createNewFile();
-        } catch (Exception e) {
+            if(!destinationFile.exists()){
+                destinationFile.getParentFile().mkdirs();
+                destinationFile.createNewFile();
+                logger.info("destiniation file created");
+            }
+            Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            logger.info("Copy log file finished");
+        } catch (IOException e) {
             // TODO: handle exception
-            e.printStackTrace();
+            logger.error("Error");
         }
     }
 }
