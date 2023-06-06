@@ -1,0 +1,4 @@
+2023-06-06T11:38:31.946+01:00 ERROR 20908 --- [main] c.e.workshhop2.MyApplicationRunner       : you can't divise with 0
+2023-06-06T11:45:37.240+01:00 ERROR 21756 --- [main] c.e.workshhop2.MyApplicationRunner       : you can't divise with 0
+06/06/2023 8516 [main] ERROR com.example.workshhop2.MyApplicationRunner - you can't divise with 0
+06-06-2023 3880 [main] ERROR com.example.workshhop2.MyApplicationRunner - you can't divise with 0
